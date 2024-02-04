@@ -1,8 +1,9 @@
 @use '../abstracts/' as *;
 
 .nav {
-    background-color: rgba(255, 255, 255, 0.5); 
-    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.43); 
+    backdrop-filter: blur(12px);
+
     position: absolute;
     top: 100%;
     width: calc(100% + var(--size-9));
@@ -11,6 +12,8 @@
     z-index: -1;
 
     @include breakpoint(tablet) {
+        background: none;
+
         position: relative;
         top: 0;
         width: auto;
@@ -21,13 +24,15 @@
 
     &-menu {
         flex-direction: row;
-        padding-block: var(--size-2);
+        padding-block: var(--size-5);
+
+        
         @include breakpoint(tablet) {
-            padding-block: 0;
             @include flex(var(--size-4)) {
                 align-items: center;
                 justify-content: column;
             }
+            padding-block: 0;
         }
     }
 
@@ -43,9 +48,14 @@
         @include flex(0);
         text-decoration: none;
         white-space: nowrap;
+
         padding-block: var(--size-2);       
         @include breakpoint(tablet) {
             padding-block: var(--size-5);
+        }
+
+        &:hover {
+            color: firebrick;
         }
     }
 }
