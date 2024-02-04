@@ -1,0 +1,19 @@
+@use '../abstracts/' as *;
+.wrapper {
+    // background: rosybrown;
+    $max-width: map-get($breakpoints, wide);
+    --padding: var(--size-9);
+    --max-width: #{$max-width};
+
+    width: min(100% - var(--padding), var(--max-width));
+    margin-inline: auto;
+}
+
+.wrapper[data-variant=narrow] {
+    $max-width: map-get($breakpoints, desktop);
+    --max-width: #{$max-width};
+}
+
+.wrapper[data-variant=full-bleed] {
+    --max-width: 100%;      
+}

@@ -1,0 +1,8 @@
+@use '../abstracts/' as *;
+.logo {
+    // background: rosybrown;s
+    @include square(45px, 45px);
+    display: grid;
+    place-content: center;
+    // padding: var(--size-1);
+}

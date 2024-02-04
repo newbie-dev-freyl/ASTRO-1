@@ -1,0 +1,5 @@
+@use '../abstracts/' as *;
+body {
+    font-family: var(--ff-primary);
+    font-size: var(--fs-400);
+}

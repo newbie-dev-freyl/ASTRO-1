@@ -1,0 +1,25 @@
+@use '../abstracts/' as *;
+@use '../abstracts/' as *;
+@each $key, $value in $spacing {
+    .margin-#{$key} {
+        margin: #{$value};
+    }
+    .margin-block-#{$key} {
+        margin-block: #{$value};
+    }
+    .margin-inline-#{$key} {
+        margin-inline: #{$value};
+    }
+    .margin-top-#{$key} {
+        margin-top: #{$value};
+    }
+    .margin-left-#{$key} {
+        margin-left: #{$value};
+    }
+    .margin-bottom-#{$key} {
+        margin-bottom: #{$value};
+    }
+    .margin-right-#{$key} {
+        margin-right: #{$value};
+    }
+}

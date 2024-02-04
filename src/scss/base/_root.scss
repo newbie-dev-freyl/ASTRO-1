@@ -1,0 +1,45 @@
+@use '../abstracts/' as *;
+:root {
+    
+    @each $prop, $data in $font-props {
+        @if $prop == "family" {
+            @each $family, $value in $data {
+                --ff-#{$family}: #{$value};
+            }
+        } @else if $prop == "weight" {
+            @each $weight, $value in $data {
+                --fw-#{$weight}: #{$value};
+            }
+        } @else if $prop == "size" {
+            @each $prop2, $data2 in $data {
+                @if $prop2 == "mobile" {
+                    @each $key, $value in $data2 {
+                        --fs-#{$key}: #{$value};
+                    }
+                } @else {
+                    @include breakpoint(tablet) {
+                        @each $key, $value in $data2 {
+                            --fs-#{$key}: #{$value};
+                        }
+                    }
+                }
+            }
+        }
+    }//typography
+
+    @each $prop, $data in $sizes {
+        @if $prop == "mobile" {
+            @each $size, $value in $data {
+                --size-#{$size}: #{$value};
+            }
+        } @else {
+            @include breakpoint(tablet) {
+                @each $size, $value in $data {
+                    --size-#{$size}: #{$value};
+                }
+            }
+        }
+    }//sizes
+
+}//root
+

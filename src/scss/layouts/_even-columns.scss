@@ -1,0 +1,9 @@
+@use '../abstracts/' as *;
+.even-columns {
+    display: grid;
+    gap: var(--size-4);
+    @include breakpoint(tablet) {
+        grid-auto-flow: column;
+        grid-auto-columns: 1fr;
+    }
+}

@@ -1,0 +1,24 @@
+@use '../abstracts/' as *;
+@each $key, $value in $spacing {
+    .padding-#{$key} {
+        padding: #{$value};
+    }
+    .padding-block-#{$key} {
+        padding-block: #{$value};
+    }
+    .padding-inline-#{$key} {
+        padding-inline: #{$value};
+    }
+    .padding-top-#{$key} {
+        padding-top: #{$value};
+    }
+    .padding-left-#{$key} {
+        padding-left: #{$value};
+    }
+    .padding-bottom-#{$key} {
+        padding-bottom: #{$value};
+    }
+    .padding-right-#{$key} {
+        padding-right: #{$value};
+    }
+}
