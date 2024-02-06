@@ -1,0 +1,11 @@
+@use '../abstracts/' as *;
+
+@each $prop, $data in $sizes {
+    @if $prop == "mobile" {
+        @each $key, $value in $data {
+            .gap-#{$key} {
+                gap: var(--size-#{$key});
+            }
+        } 
+    }
+}

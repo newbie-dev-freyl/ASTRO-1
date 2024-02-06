@@ -56,18 +56,10 @@ a[class] {
     color: currentColor;
 }
 
-h1, h2 {
+h1, h2, h3, h4 {
     line-height: .9;
 
     @include breakpoint(tablet) {
         line-height: 1;
-    }
-}
-
-h3, h4 {
-    line-height: 1;
-
-    @include breakpoint(tablet) {
-        line-height: 1.1;
     }
 }

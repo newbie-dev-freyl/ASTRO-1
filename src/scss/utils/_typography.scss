@@ -1,4 +1,5 @@
 @use '../abstracts/' as *;
+@use '../base/' as *;
 
 @each $prop, $data in $font-props {
     @if $prop == "family" {
@@ -16,4 +17,36 @@
             }
         }
     }
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+.text-lowercase {
+    text-transform: lowercase;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.heading-1 {
+    @extend h1;
+}
+
+.heading-2 {
+    @extend h2;
+}
+
+.heading-3 {
+    @extend h3;
+}
+
+.heading-4 {
+    @extend h4;
 }
