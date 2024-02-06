@@ -1,12 +1,12 @@
 @use '../abstracts/' as *;
 
 .header {
-    background: pink;
+    background: hsla(0, 0%, 87%, 0.934);
     position: sticky;
     top: 0;
     
     &-inner {
-        // background: olive;
+        background: none;
         position: relative;
 
         @include flex(0) {
@@ -15,6 +15,7 @@
         }
 
         padding-block: calc(var(--size-4) - 1px);
+        
         @include breakpoint(tablet) {
             padding-block: 0;
         }

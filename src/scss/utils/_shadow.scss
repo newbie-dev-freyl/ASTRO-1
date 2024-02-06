@@ -3,25 +3,15 @@
 .shadow {
     &.bottom {
         &.sm {
-            box-shadow: 0 2px 5px 2px rgba(black, .3);
+            box-shadow: 0 2px 5px rgba(black, .3);
         }
     
         &.default {
-            box-shadow: 0 6px 5px 2px rgba(black, .3);
+            box-shadow: 0 6px 5px rgba(black, .3);
         }
     
         &.large {
-            box-shadow: 0 9px 5px 2px rgba(black, .3);
+            box-shadow: 0 9px 5px rgba(black, .3);
         }
-
-        // &.sm,
-        // &.default,
-        // &.large {    
-        //     @include breakpoint(tablet) {
-        //         box-shadow: none;
-        //     }
-        // }    
-
     }
-
 }
