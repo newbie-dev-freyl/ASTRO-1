@@ -8,6 +8,19 @@
     padding: 0; 
 }
 
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(64, 142, 64);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
 html {
     -moz-text-size-adjust: none;
     -webkit-text-size-adjust: none;
