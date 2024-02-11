@@ -1,0 +1,7 @@
+@use '../abstracts/' as *;
+
+.img-box {
+    display: grid;
+    place-content: center;
+    object-fit: cover;
+}
