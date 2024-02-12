@@ -1,57 +1,88 @@
-const carousel = document.querySelector('.carousel');
-const arrowBtns = document.querySelectorAll('.arrow');
-const cardWidth = document.querySelector('.card').offsetWidth;
+//=================================CAROUSEL HERO ITEMS===================================
+const carousel = document.querySelector('.carousel-hero')
+const carouselItems = carousel.querySelectorAll('a')
 
-let isDragging = false;
-let startX, startScrollLeft;
+const carouselItemWidth = carouselItems[0].clientWidth
+const totalCarouselItems = carouselItems.length - 1
 
+//=================================CAROUSEL NAV ITEM===================================
+const carouselNavMenu = document.querySelector('.carousel-navmenu')
+const carouselNavItems = carouselNavMenu.querySelectorAll('a')
+const carouselNavItem = carouselNavMenu.querySelector('a')
 
+const carouselNavItemWidth = carouselNavItems[0].clientWidth
+const totalCarouselNavItems = carouselNavItems.length - 1
 
-function dragStart(e) {
-    isDragging = true;
-    carousel.classList.add('dragging');
-    startX = e.pageX;
-    startScrollLeft = carousel.scrollLeft;
-    console.log(startX, startScrollLeft);
+let counterCarouselItem = 0
+let carouselNavItemPerView = Math.round(carouselNavMenu.offsetWidth / carouselNavItemWidth) - 1;
+//=================================CLICK FUNCTIONS=====================================
+function nextCarouselItem() {
+    if (counterCarouselItem == totalCarouselItems) {
+        counterCarouselItem = 0;
+    } else {
+        counterCarouselItem += 1
+        if (counterCarouselItem > carouselNavItemPerView) {
+            carouselNavMenu.scrollLeft += carouselNavItemWidth;
+        } 
+    }
+    reloadCarousel(counterCarouselItem)
 }
 
-function dragging(e) {
-    if(!isDragging) return;
-    carousel.scrollLeft = startScrollLeft - (e.pageX - startX);
+function previewCarouselItem() {
+    if (counterCarouselItem == 0) {
+        counterCarouselItem = totalCarouselItems
+    } else {
+        counterCarouselItem -= 1
+        if (counterCarouselItem < (totalCarouselItems - carouselNavItemPerView)) {
+            carouselNavMenu.scrollLeft -= carouselNavItemWidth;
+        }
+    }
+    reloadCarousel(counterCarouselItem)
 }
 
-function dragStop() {
-    isDragging = false;
-    carousel.classList.remove('dragging');
+function reloadCarousel(counterCarouselItem) {
+    carouselNavItems.forEach(item => {
+        item.classList.remove('active')
+        carouselNavItems[counterCarouselItem].classList.add('active');
+    })
+
+    console.log(carouselItemPerView, carouselNavItemPerView , totalCarouselItems, totalCarouselNavItems, counterCarouselItem, carouselItemWidth, carouselNavItemWidth, carouselNavItemPerView)
 }
+//================================BUTTON CLICK=========================================
 
+const carouselButtons = document.querySelectorAll('.carousel-button')
 
-
-carousel.addEventListener('mousemove', dragging);
-carousel.addEventListener('mousedown', dragStart);
-carousel.addEventListener('mouseup', dragStop);
-carousel.addEventListener('mouseleave', dragStop);
-
-arrowBtns.forEach(btn => {
-    btn.addEventListener('click',() => {
-        carousel.scrollLeft += btn.id === "btn-prev" ? -cardWidth : cardWidth;
+carouselButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        carousel.scrollLeft += button.id === "prev" ? -carouselItemWidth : carouselItemWidth;
+        button.id === "prev" ? previewCarouselItem() : nextCarouselItem();
+        
     })
 })
 
-const cardAll = [...carousel.children];
-let perCard = Math.round(carousel.offsetWidth / cardWidth);
-console.log(perCard);
-
-cardAll.slice(-perCard).reverse().forEach(card => {
-    carousel.insertAdjacentHTML('afterbegin', card.outerHTML);
-})
-
-cardAll.slice(0, perCard).forEach(card => {
-    carousel.insertAdjacentHTML('beforeend', card.outerHTML);
+carouselNavItems.forEach((item, index) => {
+    item.addEventListener('click', () => {
+        counterCarouselItem = index;
+        reloadCarousel(counterCarouselItem);
+        carousel.scrollLeft = carouselItemWidth * (index + 0);
+    })
 })
 
 
-function infiniteLoop() {
+const carouselChildren = [...carousel.children];
+let carouselItemPerView = Math.round(carousel.offsetWidth / carouselItemWidth)
+
+//===============================ADD LAST SLIDE AS -1 INDEX====================
+carouselChildren.slice(-carouselItemPerView).reverse().forEach(child => {
+    carousel.insertAdjacentHTML('afterbegin', child.outerHTML);
+})
+
+carouselChildren.slice(0, carouselItemPerView).forEach(child => {
+    carousel.insertAdjacentHTML('beforeend', child.outerHTML);
+})
+
+
+function infinitSlide() {
     if (carousel.scrollLeft === 0) {
         carousel.classList.toggle('transition-disabled');
         carousel.scrollLeft = carousel.scrollWidth - Math.ceil(2 * carousel.offsetWidth);
@@ -63,4 +94,8 @@ function infiniteLoop() {
     }
 }
 
-carousel.addEventListener('scroll', infiniteLoop);
+carousel.addEventListener('scroll', infinitSlide);
+
+window.onload = function (){
+    console.log(carouselItemPerView, carouselNavItemPerView , totalCarouselItems, counterCarouselItem, carouselItemWidth, carouselNavItemWidth, carouselNavItemPerView)
+}

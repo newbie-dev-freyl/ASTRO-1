@@ -1,72 +1,92 @@
 @use '../abstracts/' as *;
 @use '../utils/' as *;
 
-
+:root {
+    --carousel-nav-item-per-view: 4;
+}
 .carousel {
-    background: none;
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: calc((100% / 1) - 1rem);
-    grid-gap: 1.5rem;
-    overflow: hidden;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;        
-    scrollbar-width: none; 
-    transition: .3s ease; 
-
-    @include breakpoint(tablet) {
-        grid-auto-columns: calc((100% / 2) - 1rem);
-    }
-
-    &.transition-disabled {
-        scroll-behavior: auto;
-    }
-
-    &.dragging{
-        scroll-snap-type: none;
-        scroll-behavior: auto;
-
-        .card {
-            cursor: grab;
-        }
-    }
-
     &-container {
-        background: none;
+        background: transparent;
+        backdrop-filter: blur(43px);
         position: relative;
-    }
-
-    &-buttons {
-        position: absolute;
         width: 100%;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-
-        @include flex() {
-            justify-content: space-between;
-        }
-
-        > * {
-            @include square(30px, 30px);
-            @extend .img-box;
-            @extend .round;
-            background: royalblue;
-            text-decoration: none;
-        }
-    }
-
-    .card {
-        background: pink;
-        cursor: pointer;
-        user-select: none;
-        scroll-snap-align: start;
-    }
-    .dp {
-        background: gold;
-        backdrop-filter: blur(69px);
-        @include square(90px,  90px);
         overflow: hidden;
+        @extend .border-radius-6;
+    }
+
+    &-hero {
+        position: relative;
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: calc(100% / 1);
+        overflow-x: hidden;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+
+        &.transition-disabled {
+            scroll-behavior: auto;
+        }
+
+        a {
+            scroll-snap-align: start;
+        }
+
+        a > img {
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+
+    &-button  {
+        background: rgba(white, .3);
+        backdrop-filter: blur(43px);
+        border: .5px solid rgba(white, .3);
+        position: absolute;
+        top: 45%;
+        @extend .logo;
+        @extend .border-radius-6;
+        text-decoration: none;
+        transition: background 1.5s ease;
+
+        &:last-of-type {
+            right: 0;
+        }
+
+        &:hover {
+            background: rgba(white, .6);
+        }
+    }
+
+    &-nav {
+        position: absolute; 
+        width: 100%;
+        bottom: 10%;
+    }
+
+    &-navmenu {
+        position: relative;
+        @extend .carousel-hero;
+        grid-auto-columns: calc(100% / var(--carousel-nav-item-per-view));
+                
+        a { 
+            background: transparent;
+            backdrop-filter: blur(43px);
+            text-decoration: none;
+            white-space: nowrap; 
+            padding: var(--size-2);            
+
+            &:not(:last-of-type) {
+                border-right: 1px solid orange;
+            }
+
+            &.active {
+                background: rgba(white, .5);
+                border: .5px solid rgba(white, .3);
+            }   
+        }
     }
 }
+
+
 

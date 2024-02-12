@@ -4,6 +4,7 @@
     background: hsla(0, 0%, 87%, 0.934);
     position: sticky;
     top: 0;
+    z-index: 999;
     
     &-inner {
         background: none;
