@@ -27,11 +27,11 @@
             scroll-behavior: auto;
         }
 
-        a {
+        &> a {
             scroll-snap-align: start;
         }
 
-        a > img {
+        &> a> img {
             height: 100%;
             object-fit: cover;
             object-position: center;
@@ -68,8 +68,12 @@
         position: relative;
         @extend .carousel-hero;
         grid-auto-columns: calc(100% / var(--carousel-nav-item-per-view));
+
+        &.transition-disabled {
+            scroll-behavior: auto;
+        }
                 
-        a { 
+        &> a { 
             background: transparent;
             backdrop-filter: blur(43px);
             text-decoration: none;

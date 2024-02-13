@@ -7,18 +7,21 @@ const totalCarouselItems = carouselItems.length - 1
 
 //=================================CAROUSEL NAV ITEM===================================
 const carouselNavMenu = document.querySelector('.carousel-navmenu')
-const carouselNavItems = carouselNavMenu.querySelectorAll('a')
+const carouselNavMenuItems = carouselNavMenu.querySelectorAll('a')
 const carouselNavItem = carouselNavMenu.querySelector('a')
 
-const carouselNavItemWidth = carouselNavItems[0].clientWidth
-const totalCarouselNavItems = carouselNavItems.length - 1
+const carouselNavItemWidth = carouselNavMenuItems[0].clientWidth
+const totalCarouselNavMenuItems = carouselNavMenuItems.length - 1
 
 let counterCarouselItem = 0
-let carouselNavItemPerView = Math.round(carouselNavMenu.offsetWidth / carouselNavItemWidth) - 1;
+let carouselNavItemPerView = Math.round(carouselNavMenu.clientWidth / carouselNavItemWidth) - 1;
 //=================================CLICK FUNCTIONS=====================================
 function nextCarouselItem() {
     if (counterCarouselItem == totalCarouselItems) {
         counterCarouselItem = 0;
+        carouselNavMenu.classList.toggle('transition-disabled');
+        carouselNavMenu.scrollLeft = 0;
+        carouselNavMenu.classList.toggle('transition-disabled');
     } else {
         counterCarouselItem += 1
         if (counterCarouselItem > carouselNavItemPerView) {
@@ -31,6 +34,9 @@ function nextCarouselItem() {
 function previewCarouselItem() {
     if (counterCarouselItem == 0) {
         counterCarouselItem = totalCarouselItems
+        carouselNavMenu.classList.toggle('transition-disabled');
+        carouselNavMenu.scrollLeft = totalCarouselNavMenuItems * carouselNavItemWidth;
+        carouselNavMenu.classList.toggle('transition-disabled');
     } else {
         counterCarouselItem -= 1
         if (counterCarouselItem < (totalCarouselItems - carouselNavItemPerView)) {
@@ -41,12 +47,11 @@ function previewCarouselItem() {
 }
 
 function reloadCarousel(counterCarouselItem) {
-    carouselNavItems.forEach(item => {
+    carouselNavMenuItems.forEach(item => {
         item.classList.remove('active')
-        carouselNavItems[counterCarouselItem].classList.add('active');
+        carouselNavMenuItems[counterCarouselItem].classList.add('active');
     })
-
-    console.log(carouselItemPerView, carouselNavItemPerView , totalCarouselItems, totalCarouselNavItems, counterCarouselItem, carouselItemWidth, carouselNavItemWidth, carouselNavItemPerView)
+    console.log(carouselItemPerView, carouselNavItemPerView , totalCarouselItems, totalCarouselNavMenuItems, counterCarouselItem, carouselItemWidth, carouselNavItemWidth, carouselNavItemPerView)
 }
 //================================BUTTON CLICK=========================================
 
@@ -56,21 +61,20 @@ carouselButtons.forEach(button => {
     button.addEventListener('click', () => {
         carousel.scrollLeft += button.id === "prev" ? -carouselItemWidth : carouselItemWidth;
         button.id === "prev" ? previewCarouselItem() : nextCarouselItem();
-        
     })
 })
 
-carouselNavItems.forEach((item, index) => {
+carouselNavMenuItems.forEach((item, index) => {
     item.addEventListener('click', () => {
         counterCarouselItem = index;
         reloadCarousel(counterCarouselItem);
-        carousel.scrollLeft = carouselItemWidth * (index + 0);
+        carousel.scrollLeft = carouselItemWidth * (index + 1);
     })
 })
 
 
 const carouselChildren = [...carousel.children];
-let carouselItemPerView = Math.round(carousel.offsetWidth / carouselItemWidth)
+let carouselItemPerView = Math.round(carousel.clientWidth / carouselItemWidth)
 
 //===============================ADD LAST SLIDE AS -1 INDEX====================
 carouselChildren.slice(-carouselItemPerView).reverse().forEach(child => {
@@ -85,11 +89,11 @@ carouselChildren.slice(0, carouselItemPerView).forEach(child => {
 function infinitSlide() {
     if (carousel.scrollLeft === 0) {
         carousel.classList.toggle('transition-disabled');
-        carousel.scrollLeft = carousel.scrollWidth - Math.ceil(2 * carousel.offsetWidth);
+        carousel.scrollLeft = carousel.scrollWidth - Math.ceil(2 * carousel.clientWidth);
         carousel.classList.toggle('transition-disabled');
-    } else if(Math.ceil(carousel.scrollLeft) === Math.ceil(carousel.scrollWidth - carousel.offsetWidth)) {
+    } else if(Math.ceil(carousel.scrollLeft) === Math.ceil(carousel.scrollWidth - carousel.clientWidth)) {
         carousel.classList.toggle('transition-disabled');
-        carousel.scrollLeft = carousel.offsetWidth;
+        carousel.scrollLeft = carousel.clientWidth;
         carousel.classList.toggle('transition-disabled');
     }
 }

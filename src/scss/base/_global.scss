@@ -1,5 +1,6 @@
 @use '../abstracts/' as *;
 body {
+    background: #3a3a3a;
     font-family: var(--ff-primary);
     font-size: var(--fs-400);
     overflow-x: hidden;
