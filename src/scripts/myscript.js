@@ -1,105 +1,134 @@
-//=================================CAROUSEL HERO ITEMS===================================
-const carousel = document.querySelector('.carousel-hero')
-const carouselItems = carousel.querySelectorAll('a')
+//HERO SLIDE
+const heroContainer = document.querySelector('.hero-container');
+const heroSlide = document.querySelector('.hero-slide');
+const heroSlideItemAll = document.querySelectorAll('.hero-slide > a');
+const heroSlideItem = heroSlideItemAll[0];
+const heroSlideItemWidth = heroSlideItemAll[0].getBoundingClientRect().width
 
-const carouselItemWidth = carouselItems[0].clientWidth
-const totalCarouselItems = carouselItems.length - 1
+//HERO NAV
+const heroNav = document.querySelector('.hero-nav');
+const heroNavMenu = document.querySelector('.hero-navmenu');
+const heroNavMenuItemAll = document.querySelectorAll('.hero-navmenu > a');
+const heroNavMenuItem = heroNavMenuItemAll[0];
+const heroNavMenuItemWidth = heroNavMenuItemAll[0].clientWidth;
 
-//=================================CAROUSEL NAV ITEM===================================
-const carouselNavMenu = document.querySelector('.carousel-navmenu')
-const carouselNavMenuItems = carouselNavMenu.querySelectorAll('a')
-const carouselNavItem = carouselNavMenu.querySelector('a')
+//HERO BUTTON
+const heroButtonAll = document.querySelectorAll('.hero-button')
 
-const carouselNavItemWidth = carouselNavMenuItems[0].clientWidth
-const totalCarouselNavMenuItems = carouselNavMenuItems.length - 1
+let heroCounter = 0;
+let totalHeroSlide = heroNavMenuItemAll.length - 1;
 
-let counterCarouselItem = 0
-let carouselNavItemPerView = Math.round(carouselNavMenu.clientWidth / carouselNavItemWidth) - 1;
-//=================================CLICK FUNCTIONS=====================================
-function nextCarouselItem() {
-    if (counterCarouselItem == totalCarouselItems) {
-        counterCarouselItem = 0;
-        carouselNavMenu.classList.toggle('transition-disabled');
-        carouselNavMenu.scrollLeft = 0;
-        carouselNavMenu.classList.toggle('transition-disabled');
+//FUNCTIONS
+function nextSlide() {
+    if (heroCounter == totalHeroSlide)  {
+        heroCounter = 0;
+        heroNavMenu.classList.toggle('disable-slide');
+        heroNavMenu.scrollLeft = 0;
+        heroNavMenu.classList.toggle('disable-slide');
     } else {
-        counterCarouselItem += 1
-        if (counterCarouselItem > carouselNavItemPerView) {
-            carouselNavMenu.scrollLeft += carouselNavItemWidth;
-        } 
+        heroCounter += 1;
     }
-    reloadCarousel(counterCarouselItem)
+
+    reloadHeroSlider(heroCounter);
 }
 
-function previewCarouselItem() {
-    if (counterCarouselItem == 0) {
-        counterCarouselItem = totalCarouselItems
-        carouselNavMenu.classList.toggle('transition-disabled');
-        carouselNavMenu.scrollLeft = totalCarouselNavMenuItems * carouselNavItemWidth;
-        carouselNavMenu.classList.toggle('transition-disabled');
+function previewSlide() {
+    if (heroCounter == 0)  {
+        heroCounter = totalHeroSlide;
+        heroNavMenu.classList.toggle('disable-slide');
+        heroNavMenu.scrollLeft = (heroNavMenuItemAll.length - 1) * heroNavMenuItemWidth;
+        heroNavMenu.classList.toggle('disable-slide');
+        console.log(heroNavMenu.scrollLeft)
     } else {
-        counterCarouselItem -= 1
-        if (counterCarouselItem < (totalCarouselItems - carouselNavItemPerView)) {
-            carouselNavMenu.scrollLeft -= carouselNavItemWidth;
-        }
+        heroCounter -= 1;
     }
-    reloadCarousel(counterCarouselItem)
+
+    reloadHeroSlider(heroCounter);
 }
 
-function reloadCarousel(counterCarouselItem) {
-    carouselNavMenuItems.forEach(item => {
-        item.classList.remove('active')
-        carouselNavMenuItems[counterCarouselItem].classList.add('active');
-    })
-    console.log(carouselItemPerView, carouselNavItemPerView , totalCarouselItems, totalCarouselNavMenuItems, counterCarouselItem, carouselItemWidth, carouselNavItemWidth, carouselNavItemPerView)
+function reloadHeroSlider(heroCounter){
+    heroNavMenuItemAll.forEach((item) => {
+        item.classList.remove('active');
+        heroNavMenuItemAll[heroCounter].classList.add('active');
+    });
 }
-//================================BUTTON CLICK=========================================
+//FUNCTIONS
 
-const carouselButtons = document.querySelectorAll('.carousel-button')
-
-carouselButtons.forEach(button => {
+//CLICK EVENTS ON BUTTON AND NAV
+heroButtonAll.forEach(button => {
     button.addEventListener('click', () => {
-        carousel.scrollLeft += button.id === "prev" ? -carouselItemWidth : carouselItemWidth;
-        button.id === "prev" ? previewCarouselItem() : nextCarouselItem();
+        heroSlide.scrollLeft += button.id === "prev" ? -heroSlideItemWidth : heroSlideItemWidth;
+        button.id === "prev" ? previewSlide() : nextSlide();
     })
 })
-
-carouselNavMenuItems.forEach((item, index) => {
+heroNavMenuItemAll.forEach((item, index) => {
     item.addEventListener('click', () => {
-        counterCarouselItem = index;
-        reloadCarousel(counterCarouselItem);
-        carousel.scrollLeft = carouselItemWidth * (index + 1);
+        heroCounter = index;
+        reloadHeroSlider(heroCounter);
+        heroSlide.scrollLeft = (heroCounter + 1) * heroSlideItemWidth;
     })
+});
+//CLICK EVENTS ON BUTTON AND NAV
+
+//DUPLICATE FIRST AND LAST ITEM IN THE SLIDER
+const heroSlideChildren = [...heroSlide.children];
+let heroSlideChildrenPerView = Math.round(heroSlide.clientWidth / heroSlideItemWidth);
+
+heroSlideChildren.slice(-heroSlideChildrenPerView).reverse().forEach(child => {
+    heroSlide.insertAdjacentHTML('afterbegin', child.outerHTML);
 })
 
-
-const carouselChildren = [...carousel.children];
-let carouselItemPerView = Math.round(carousel.clientWidth / carouselItemWidth)
-
-//===============================ADD LAST SLIDE AS -1 INDEX====================
-carouselChildren.slice(-carouselItemPerView).reverse().forEach(child => {
-    carousel.insertAdjacentHTML('afterbegin', child.outerHTML);
+heroSlideChildren.slice(0, heroSlideChildrenPerView).forEach(child => {
+    heroSlide.insertAdjacentHTML('beforeend', child.outerHTML);
 })
-
-carouselChildren.slice(0, carouselItemPerView).forEach(child => {
-    carousel.insertAdjacentHTML('beforeend', child.outerHTML);
-})
+//DUPLICATE FIRST AND LAST ITEM IN THE SLIDER
 
 
-function infinitSlide() {
-    if (carousel.scrollLeft === 0) {
-        carousel.classList.toggle('transition-disabled');
-        carousel.scrollLeft = carousel.scrollWidth - Math.ceil(2 * carousel.clientWidth);
-        carousel.classList.toggle('transition-disabled');
-    } else if(Math.ceil(carousel.scrollLeft) === Math.ceil(carousel.scrollWidth - carousel.clientWidth)) {
-        carousel.classList.toggle('transition-disabled');
-        carousel.scrollLeft = carousel.clientWidth;
-        carousel.classList.toggle('transition-disabled');
+//INFINITE SCROLLING
+function infiniteScroll() {
+    if (heroSlide.scrollLeft === 0) {   
+        //checking the formula
+        console.log(heroSlide.scrollLeft)
+        console.log(heroSlide.scrollWidth)
+        console.log(Math.ceil(2 * heroSlide.clientWidth))
+        //checking the formula
+
+        heroSlide.classList.toggle('disable-slide');
+        heroSlide.scrollLeft = heroSlide.scrollWidth - Math.ceil(2 * heroSlide.clientWidth);
+        heroSlide.classList.toggle('disable-slide');
+    
+    } else if (Math.ceil(heroSlide.scrollLeft) === Math.ceil(heroSlide.scrollWidth - heroSlide.clientWidth)) {
+        //checking the formula
+        console.log(Math.ceil(heroSlide.scrollLeft))
+        console.log(Math.ceil(heroSlide.scrollWidth - heroSlide.clientWidth))
+        //checking the formula
+
+        heroSlide.classList.toggle('disable-slide');
+        heroSlide.scrollLeft = heroSlide.clientWidth;
+        heroSlide.classList.toggle('disable-slide');
     }
-}
+} 
+heroSlide.addEventListener('scroll', infiniteScroll);
+//INFINITE SCROLLING
 
-carousel.addEventListener('scroll', infinitSlide);
+//AUTO PLAY SECTION
+let playHeroSlider;
 
-window.onload = function (){
-    console.log(carouselItemPerView, carouselNavItemPerView , totalCarouselItems, counterCarouselItem, carouselItemWidth, carouselNavItemWidth, carouselNavItemPerView)
+function autoPlayCommand() {
+    nextSlide();
+    heroSlide.scrollLeft += heroSlideItemWidth;
+    infiniteScroll();
 }
+function startHeroSlider() {
+    playHeroSlider = setInterval(() => {
+        autoPlayCommand();
+    }, 3000);
+}
+startHeroSlider()
+
+function stopHeroSlider() {
+    clearInterval(playHeroSlider);
+}
+heroContainer.addEventListener('mouseenter', stopHeroSlider);
+heroContainer.addEventListener('mouseleave', startHeroSlider);
+//AUTO PLAY SECTION

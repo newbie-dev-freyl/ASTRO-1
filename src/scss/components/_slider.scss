@@ -2,94 +2,93 @@
 @use '../utils/' as *;
 
 :root {
-    --carousel-nav-item-per-view: 4;
+    --hero-nav-item-per-view: 7;
 }
-.carousel {
+.hero {
     &-container {
-        background: transparent;
-        backdrop-filter: blur(43px);
         position: relative;
-        width: 100%;
-        overflow: hidden;
-        @extend .border-radius-6;
+        overflow: hidden;   
+        border-radius: 10px;
     }
 
-    &-hero {
-        position: relative;
+    &-slide {
         display: grid;
         grid-auto-flow: column;
-        grid-auto-columns: calc(100% / 1);
+        grid-auto-columns: calc(100%);
         overflow-x: hidden;
         scroll-snap-type: x mandatory;
         scroll-behavior: smooth;
 
-        &.transition-disabled {
+        &.disable-slide {
             scroll-behavior: auto;
-        }
-
-        &> a {
-            scroll-snap-align: start;
-        }
-
-        &> a> img {
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
         }
     }
 
-    &-button  {
-        background: rgba(white, .3);
-        backdrop-filter: blur(43px);
-        border: .5px solid rgba(white, .3);
-        position: absolute;
-        top: 45%;
-        @extend .logo;
-        @extend .border-radius-6;
+    &-slide > a {
         text-decoration: none;
-        transition: background 1.5s ease;
+        scroll-snap-align: start;
+    }
 
-        &:last-of-type {
-            right: 0;
-        }
+    &-slide > a > img {
+        height: 70vh;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
 
+    &-button  { 
+        color: white;
+        background: rgba(white, .3);
+        backdrop-filter: blur(20px);
+        @extend .grid-center;
+        transition: background 1s ease;
+        
         &:hover {
-            background: rgba(white, .6);
+            background: rgba(white, .5);
         }
     }
 
     &-nav {
-        position: absolute; 
+        position: absolute;
+        bottom: 0;
+        @extend .hero-slide;
+        grid-auto-columns: 7% 86% 7%;
         width: 100%;
-        bottom: 10%;
     }
 
     &-navmenu {
-        position: relative;
-        @extend .carousel-hero;
-        grid-auto-columns: calc(100% / var(--carousel-nav-item-per-view));
+       @extend .hero-slide;
+       grid-auto-columns: calc(100% / var(--hero-nav-item-per-view));
 
-        &.transition-disabled {
+       &.disable-slide {
             scroll-behavior: auto;
         }
-                
-        &> a { 
-            background: transparent;
-            backdrop-filter: blur(43px);
-            text-decoration: none;
-            white-space: nowrap; 
-            padding: var(--size-2);            
+    }
 
-            &:not(:last-of-type) {
-                border-right: 1px solid orange;
-            }
+    &-navmenu > a { 
+        background: rgba(gray, .2);
+        backdrop-filter: blur(20px);
+        color: gray ;
 
-            &.active {
-                background: rgba(white, .5);
-                border: .5px solid rgba(white, .3);
-            }   
+        white-space: nowrap;
+        overflow-x: hidden;
+        text-overflow: ellipsis;
+
+        padding: var(--size-3);
+        scroll-snap-align: start;
+        transition: background 1s ease;
+        &:not(:last-of-type) {
+            border-right: 2px solid transparent;
+        }
+
+        &.active,
+        &:hover {
+            color: black;
+            background: rgba(white, .4);
         }
     }
+    
+    
 }
 
 

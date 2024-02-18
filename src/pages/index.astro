@@ -38,8 +38,8 @@ import '../scss/mystyle.scss';
 		</header>
 		<main>
 			<div class="wrapper">
-				<div class="carousel-container | margin-block-sm">
-					<ul class="carousel-hero | margin-top-default" role="list">
+				<div class="hero-container | margin-block-sm">
+					<ul class="hero-slide" role="list">
 						<a href="javascript:void(0);">
 							<img class="" src="/public/assets/images/carousell-1.jpg" draggable="false" alt="">
 						</a>
@@ -62,15 +62,12 @@ import '../scss/mystyle.scss';
 							<img class="" src="/public/assets/images/carousell-7.jpg" draggable="false" alt="">
 						</a>
 					</ul>
-					<a href="javascript:void(0);" class="carousel-button | margin-left-default" id="prev">
-						<i class="bx bx-chevron-left"></i>
-					</a>
-					<a href="javascript:void(0);" class="carousel-button | margin-right-default" id="next">
-						<i class="bx bx-chevron-right"></i>
-					</a>
-					<nav class="carousel-nav">
-						<ul class="carousel-navmenu" role="list">
-							<a class="active" href="javascript:void(0);">Item 1</a>
+					<nav class="hero-nav">
+						<a href="javascript:void(0);" class="hero-button" id="prev">
+							<i class="bx bx-chevron-left"></i>
+						</a>
+						<ul class="hero-navmenu | ff-nav" role="list">
+							<a class="active" href="javascript:void(0);">Felt Saint Grandice</a>
 							<a href="javascript:void(0);">Item 2</a>
 							<a href="javascript:void(0);">Item 3</a>
 							<a href="javascript:void(0);">Item 4</a>
@@ -78,6 +75,9 @@ import '../scss/mystyle.scss';
 							<a href="javascript:void(0);">Item 6</a>
 							<a href="javascript:void(0);">Item 7</a>
 						</ul>
+						<a href="javascript:void(0);" class="hero-button" id="next">
+							<i class="bx bx-chevron-right"></i>
+						</a>
 					</nav>
 				</div><!-- carousel-container -->
 			</div><!-- wrapper -->	
@@ -118,7 +118,7 @@ import '../scss/mystyle.scss';
 				</div>
 			</section>		 -->
 	</body>
-	<script defer src="../src/scripts/myscript.js" type="module"></script>
+	<script defer src="../src/scripts/myscript.js"></script>
 </html>
 
 
