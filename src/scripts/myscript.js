@@ -113,22 +113,23 @@ heroSlide.addEventListener('scroll', infiniteScroll);
 
 //AUTO PLAY SECTION
 let playHeroSlider;
+let autoPlayInterval = 2000;
 
 function autoPlayCommand() {
-    nextSlide();
     heroSlide.scrollLeft += heroSlideItemWidth;
-    infiniteScroll();
+    heroSlideItemCounter = Math.ceil(heroSlide.scrollLeft / heroSlideItemWidth);
+    heroSlideItemCounter > totalHeroSlide ? reloadHeroSlider(0) : reloadHeroSlider(heroSlideItemCounter);   
 }
 function startHeroSlider() {
     playHeroSlider = setInterval(() => {
         autoPlayCommand();
-    }, 3000);
+    }, autoPlayInterval);
 }
-startHeroSlider()
-
 function stopHeroSlider() {
     clearInterval(playHeroSlider);
 }
 heroContainer.addEventListener('mouseenter', stopHeroSlider);
 heroContainer.addEventListener('mouseleave', startHeroSlider);
+
+startHeroSlider();
 //AUTO PLAY SECTION
