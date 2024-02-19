@@ -1,9 +1,9 @@
 //HERO SLIDE
 const heroContainer = document.querySelector('.hero-container');
-const heroSlide = document.querySelector('.hero-slide');
-const heroSlideItemAll = document.querySelectorAll('.hero-slide > a');
-const heroSlideItem = heroSlideItemAll[0];
-const heroSlideItemWidth = heroSlideItemAll[0].getBoundingClientRect().width
+const heroSlider = document.querySelector('.hero-slider');
+const heroSliderItemAll = document.querySelectorAll('.hero-slider > a');
+const heroSliderItem = heroSliderItemAll[0];
+const heroSliderItemWidth = heroSliderItemAll[0].getBoundingClientRect().width;
 
 //HERO NAV
 const heroNav = document.querySelector('.hero-nav');
@@ -13,7 +13,7 @@ const heroNavMenuItem = heroNavMenuItemAll[0];
 const heroNavMenuItemWidth = heroNavMenuItemAll[0].clientWidth;
 
 //HERO BUTTON
-const heroButtonAll = document.querySelectorAll('.hero-button')
+const heroButtonAll = document.querySelectorAll('.hero-button');
 
 let heroCounter = 0;
 let totalHeroSlide = heroNavMenuItemAll.length - 1;
@@ -22,9 +22,9 @@ let totalHeroSlide = heroNavMenuItemAll.length - 1;
 function nextSlide() {
     if (heroCounter == totalHeroSlide)  {
         heroCounter = 0;
-        heroNavMenu.classList.toggle('disable-slide');
+        heroNavMenu.classList.toggle('disable-slider');
         heroNavMenu.scrollLeft = 0;
-        heroNavMenu.classList.toggle('disable-slide');
+        heroNavMenu.classList.toggle('disable-slider');
     } else {
         heroCounter += 1;
     }
@@ -35,10 +35,10 @@ function nextSlide() {
 function previewSlide() {
     if (heroCounter == 0)  {
         heroCounter = totalHeroSlide;
-        heroNavMenu.classList.toggle('disable-slide');
+        heroNavMenu.classList.toggle('disable-slider');
         heroNavMenu.scrollLeft = (heroNavMenuItemAll.length - 1) * heroNavMenuItemWidth;
-        heroNavMenu.classList.toggle('disable-slide');
-        console.log(heroNavMenu.scrollLeft)
+        heroNavMenu.classList.toggle('disable-slider');
+        console.log(heroNavMenu.scrollLeft);
     } else {
         heroCounter -= 1;
     }
@@ -50,73 +50,74 @@ function reloadHeroSlider(heroCounter){
     heroNavMenuItemAll.forEach((item) => {
         item.classList.remove('active');
         heroNavMenuItemAll[heroCounter].classList.add('active');
-    });
+    })
 }
 //FUNCTIONS
 
 //CLICK EVENTS ON BUTTON AND NAV
 heroButtonAll.forEach(button => {
     button.addEventListener('click', () => {
-        heroSlide.scrollLeft += button.id === "prev" ? -heroSlideItemWidth : heroSlideItemWidth;
+        heroSlider.scrollLeft += button.id === "prev" ? -heroSliderItemWidth : heroSliderItemWidth;
         button.id === "prev" ? previewSlide() : nextSlide();
     })
 })
+
 heroNavMenuItemAll.forEach((item, index) => {
     item.addEventListener('click', () => {
         heroCounter = index;
         reloadHeroSlider(heroCounter);
-        heroSlide.scrollLeft = (heroCounter + 1) * heroSlideItemWidth;
+        heroSlider.scrollLeft = (heroCounter + 1) * heroSliderItemWidth;
     })
-});
+})
 //CLICK EVENTS ON BUTTON AND NAV
 
 //DUPLICATE FIRST AND LAST ITEM IN THE SLIDER
-const heroSlideChildren = [...heroSlide.children];
-let heroSlideChildrenPerView = Math.round(heroSlide.clientWidth / heroSlideItemWidth);
+const heroSliderChildren = [...heroSlider.children];
+let heroSliderChildrenPerView = Math.round(heroSlider.clientWidth / heroSliderItemWidth);
 
-heroSlideChildren.slice(-heroSlideChildrenPerView).reverse().forEach(child => {
-    heroSlide.insertAdjacentHTML('afterbegin', child.outerHTML);
+heroSliderChildren.slice(-heroSliderChildrenPerView).reverse().forEach(child => {
+    heroSlider.insertAdjacentHTML('afterbegin', child.outerHTML);
 })
 
-heroSlideChildren.slice(0, heroSlideChildrenPerView).forEach(child => {
-    heroSlide.insertAdjacentHTML('beforeend', child.outerHTML);
+heroSliderChildren.slice(0, heroSliderChildrenPerView).forEach(child => {
+    heroSlider.insertAdjacentHTML('beforeend', child.outerHTML);
 })
 //DUPLICATE FIRST AND LAST ITEM IN THE SLIDER
 
 
 //INFINITE SCROLLING
 function infiniteScroll() {
-    if (heroSlide.scrollLeft === 0) {   
+    if (heroSlider.scrollLeft === 0) {   
         //checking the formula
-        console.log(heroSlide.scrollLeft)
-        console.log(heroSlide.scrollWidth)
-        console.log(Math.ceil(2 * heroSlide.clientWidth))
+        console.log(heroSlider.scrollLeft)
+        console.log(heroSlider.scrollWidth)
+        console.log(Math.ceil(2 * heroSlider.clientWidth))
         //checking the formula
 
-        heroSlide.classList.toggle('disable-slide');
-        heroSlide.scrollLeft = heroSlide.scrollWidth - Math.ceil(2 * heroSlide.clientWidth);
-        heroSlide.classList.toggle('disable-slide');
+        heroSlider.classList.toggle('disable-slider');
+        heroSlider.scrollLeft = heroSlider.scrollWidth - Math.ceil(2 * heroSlider.clientWidth);
+        heroSlider.classList.toggle('disable-slider');
     
-    } else if (Math.ceil(heroSlide.scrollLeft) === Math.ceil(heroSlide.scrollWidth - heroSlide.clientWidth)) {
+    } else if (Math.ceil(heroSlider.scrollLeft) === Math.ceil(heroSlider.scrollWidth - heroSlider.clientWidth)) {
         //checking the formula
-        console.log(Math.ceil(heroSlide.scrollLeft))
-        console.log(Math.ceil(heroSlide.scrollWidth - heroSlide.clientWidth))
+        console.log(Math.ceil(heroSlider.scrollLeft))
+        console.log(Math.ceil(heroSlider.scrollWidth - heroSlider.clientWidth))
         //checking the formula
 
-        heroSlide.classList.toggle('disable-slide');
-        heroSlide.scrollLeft = heroSlide.clientWidth;
-        heroSlide.classList.toggle('disable-slide');
+        heroSlider.classList.toggle('disable-slider');
+        heroSlider.scrollLeft = heroSlider.clientWidth;
+        heroSlider.classList.toggle('disable-slider');
     }
 } 
-heroSlide.addEventListener('scroll', infiniteScroll);
+heroSlider.addEventListener('scroll', infiniteScroll);
 //INFINITE SCROLLING
 
 //AUTO PLAY SECTION
 let playHeroSlider;
-let autoPlayInterval = 5000;
+let autoPlayInterval = 3000;
 
 function autoPlayCommand() {
-    heroSlide.scrollLeft += heroSlideItemWidth;
+    heroSlider.scrollLeft += heroSliderItemWidth;
     heroCounter == totalHeroSlide ? reloadHeroSlider(heroCounter=0) : reloadHeroSlider(heroCounter+=1);   
     console.log(heroCounter)
 }

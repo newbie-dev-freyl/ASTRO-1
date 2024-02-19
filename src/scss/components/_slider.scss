@@ -11,7 +11,7 @@
 
     }
 
-    &-slide {
+    &-slider {
         display: grid;
         grid-auto-flow: column;
         grid-auto-columns: calc(100%);
@@ -19,17 +19,17 @@
         scroll-snap-type: x mandatory;
         scroll-behavior: smooth;
 
-        &.disable-slide {
+        &.disable-slider {
             scroll-behavior: auto;
         }
     }
 
-    &-slide > a {
+    &-slider > a {
         text-decoration: none;
         scroll-snap-align: start;
     }
 
-    &-slide > a > img {
+    &-slider > a > img {
         height: 70vh;
         width: 100%;
         object-fit: cover;
@@ -51,16 +51,16 @@
     &-nav {
         position: absolute;
         bottom: 0;
-        @extend .hero-slide;
+        @extend .hero-slider    ;
         grid-auto-columns: 7% 86% 7%;
         width: 100%;
     }
 
     &-navmenu {
-       @extend .hero-slide;
+       @extend .hero-slider ;
        grid-auto-columns: calc(100% / var(--hero-nav-item-per-view));
 
-       &.disable-slide {
+       &.disable-slider  {
             scroll-behavior: auto;
         }
     }
