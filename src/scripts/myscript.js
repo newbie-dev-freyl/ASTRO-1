@@ -59,6 +59,7 @@ heroButtonAll.forEach(button => {
     button.addEventListener('click', () => {
         heroSlider.scrollLeft += button.id === "prev" ? -heroSliderItemWidth : heroSliderItemWidth;
         button.id === "prev" ? previewSlide() : nextSlide();
+        console.log(button.id)
     })
 })
 
@@ -114,13 +115,12 @@ heroSlider.addEventListener('scroll', infiniteScroll);
 
 //AUTO PLAY SECTION
 let playHeroSlider;
-let autoPlayInterval = 3000;
+let autoPlayInterval = 5000;
 
 function autoPlayCommand() {
-    heroSlider.scrollLeft += heroSliderItemWidth;
-    heroCounter == totalHeroSlide ? reloadHeroSlider(heroCounter=0) : reloadHeroSlider(heroCounter+=1);   
-    console.log(heroCounter)
+    heroButtonAll[1].click();
 }
+
 function startHeroSlider() {
     playHeroSlider = setInterval(() => {
         autoPlayCommand();
