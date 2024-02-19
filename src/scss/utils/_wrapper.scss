@@ -15,5 +15,6 @@
 }
 
 .wrapper[data-variant=full-bleed] {
-    --max-width: 100%;      
+    --max-width: 100%;   
+    --padding: 0;   
 }

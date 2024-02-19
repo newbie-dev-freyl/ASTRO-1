@@ -117,8 +117,8 @@ let autoPlayInterval = 2000;
 
 function autoPlayCommand() {
     heroSlide.scrollLeft += heroSlideItemWidth;
-    heroSlideItemCounter = Math.ceil(heroSlide.scrollLeft / heroSlideItemWidth);
-    heroSlideItemCounter > totalHeroSlide ? reloadHeroSlider(0) : reloadHeroSlider(heroSlideItemCounter);   
+    heroCounter = Math.ceil(heroSlide.scrollLeft / heroSlideItemWidth);
+    heroCounter > totalHeroSlide ? reloadHeroSlider(0) : reloadHeroSlider(heroCounter);   
 }
 function startHeroSlider() {
     playHeroSlider = setInterval(() => {
@@ -131,5 +131,5 @@ function stopHeroSlider() {
 heroContainer.addEventListener('mouseenter', stopHeroSlider);
 heroContainer.addEventListener('mouseleave', startHeroSlider);
 
-startHeroSlider();
+
 //AUTO PLAY SECTION
