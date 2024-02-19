@@ -113,18 +113,21 @@ heroSlide.addEventListener('scroll', infiniteScroll);
 
 //AUTO PLAY SECTION
 let playHeroSlider;
-let autoPlayInterval = 2000;
+let autoPlayInterval = 5000;
 
 function autoPlayCommand() {
     heroSlide.scrollLeft += heroSlideItemWidth;
-    heroCounter = Math.ceil(heroSlide.scrollLeft / heroSlideItemWidth);
-    heroCounter > totalHeroSlide ? reloadHeroSlider(0) : reloadHeroSlider(heroCounter);   
+    heroCounter == totalHeroSlide ? reloadHeroSlider(heroCounter=0) : reloadHeroSlider(heroCounter+=1);   
+    console.log(heroCounter)
 }
 function startHeroSlider() {
     playHeroSlider = setInterval(() => {
         autoPlayCommand();
     }, autoPlayInterval);
 }
+
+startHeroSlider();
+
 function stopHeroSlider() {
     clearInterval(playHeroSlider);
 }
