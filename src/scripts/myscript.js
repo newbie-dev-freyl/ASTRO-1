@@ -115,10 +115,11 @@ heroSlider.addEventListener('scroll', infiniteScroll);
 
 //AUTO PLAY SECTION
 let playHeroSlider;
-let autoPlayInterval = 5000;
+let autoPlayInterval = 2000;
 
 function autoPlayCommand() {
-    heroButtonAll[1].click();
+    nextSlide();
+    heroNavMenuItemAll[heroCounter].click();
 }
 
 function startHeroSlider() {
