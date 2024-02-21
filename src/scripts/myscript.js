@@ -118,8 +118,17 @@ let playHeroSlider;
 let autoPlayInterval = 2000;
 
 function autoPlayCommand() {
-    nextSlide();
-    heroNavMenuItemAll[heroCounter].click();
+    if (heroCounter == totalHeroSlide)  {
+        heroCounter = 0;
+        heroNavMenu.classList.toggle('disable-slider');
+        heroNavMenu.scrollLeft = 0;
+        heroNavMenu.classList.toggle('disable-slider');
+        heroNavMenuItemAll[heroCounter].click();
+        heroSlider.scrollLeft += heroSliderItemWidth;
+    } else {
+        heroCounter += 1;
+        heroNavMenuItemAll[heroCounter].click();
+    }
 }
 
 function startHeroSlider() {
