@@ -22,11 +22,10 @@ let totalHeroSlide = heroNavMenuItemAll.length - 1;
 function nextSlide() {
     if (heroCounter == totalHeroSlide)  {
         heroCounter = 0;
-        // heroNavMenu.classList.toggle('disable-slider');
-        // heroNavMenu.scrollLeft = 0;
-        // heroNavMenu.classList.toggle('disable-slider');
+        heroSlider.scrollLeft -= heroSliderItemAll[heroCounter].getBoundingClientRect().right;
     } else {
         heroCounter += 1;
+        heroSlider.scrollLeft += heroSliderItemAll[heroCounter].getBoundingClientRect().left;
     }
 
     reloadHeroSlider(heroCounter);
@@ -35,12 +34,10 @@ function nextSlide() {
 function previewSlide() {
     if (heroCounter == 0)  {
         heroCounter = totalHeroSlide;
-        // heroNavMenu.classList.toggle('disable-slider');
-        // heroNavMenu.scrollLeft = (heroNavMenuItemAll.length - 1) * heroNavMenuItemWidth;
-        // heroNavMenu.classList.toggle('disable-slider');
-        console.log(heroNavMenu.scrollLeft);
+        heroSlider.scrollLeft -= heroSliderItemAll[heroCounter].getBoundingClientRect().right;
     } else {
         heroCounter -= 1;
+        heroSlider.scrollLeft += heroSliderItemAll[heroCounter].getBoundingClientRect().left;
     }
 
     reloadHeroSlider(heroCounter);
@@ -57,7 +54,6 @@ function reloadHeroSlider(heroCounter){
 //CLICK EVENTS ON BUTTON AND NAV
 heroButtonAll.forEach(button => {
     button.addEventListener('click', () => {
-        heroSlider.scrollLeft += button.id === "prev" ? -heroSliderItemWidth : heroSliderItemWidth;
         button.id === "prev" ? previewSlide() : nextSlide();
         console.log(button.id)
     })
@@ -67,7 +63,6 @@ heroNavMenuItemAll.forEach((item, index) => {
     item.addEventListener('click', () => {
         heroCounter = index;
         reloadHeroSlider(heroCounter);
-        // heroSlider.scrollLeft = (heroCounter + 1) * heroSliderItemWidth;
         heroSlider.scrollLeft += heroSliderItemAll[heroCounter].getBoundingClientRect().left;
     })
 })
@@ -119,17 +114,7 @@ let playHeroSlider;
 let autoPlayInterval = 2000;
 
 function autoPlayCommand() {
-    if (heroCounter == totalHeroSlide)  {
-        heroCounter = 0;
-        // heroNavMenu.classList.toggle('disable-slider');
-        // heroNavMenu.scrollLeft = 0;
-        // heroNavMenu.classList.toggle('disable-slider');
-        heroNavMenuItemAll[heroCounter].click();
-        heroSlider.scrollLeft -= heroSliderItemAll[heroCounter].getBoundingClientRect().right;
-    } else if (heroCounter >= 0) {
-        heroCounter += 1;
-        heroNavMenuItemAll[heroCounter].click();
-    }
+   nextSlide();
 }
 
 function startHeroSlider() {
