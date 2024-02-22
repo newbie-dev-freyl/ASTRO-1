@@ -22,9 +22,9 @@ let totalHeroSlide = heroNavMenuItemAll.length - 1;
 function nextSlide() {
     if (heroCounter == totalHeroSlide)  {
         heroCounter = 0;
-        heroNavMenu.classList.toggle('disable-slider');
-        heroNavMenu.scrollLeft = 0;
-        heroNavMenu.classList.toggle('disable-slider');
+        // heroNavMenu.classList.toggle('disable-slider');
+        // heroNavMenu.scrollLeft = 0;
+        // heroNavMenu.classList.toggle('disable-slider');
     } else {
         heroCounter += 1;
     }
@@ -35,9 +35,9 @@ function nextSlide() {
 function previewSlide() {
     if (heroCounter == 0)  {
         heroCounter = totalHeroSlide;
-        heroNavMenu.classList.toggle('disable-slider');
-        heroNavMenu.scrollLeft = (heroNavMenuItemAll.length - 1) * heroNavMenuItemWidth;
-        heroNavMenu.classList.toggle('disable-slider');
+        // heroNavMenu.classList.toggle('disable-slider');
+        // heroNavMenu.scrollLeft = (heroNavMenuItemAll.length - 1) * heroNavMenuItemWidth;
+        // heroNavMenu.classList.toggle('disable-slider');
         console.log(heroNavMenu.scrollLeft);
     } else {
         heroCounter -= 1;
@@ -67,7 +67,8 @@ heroNavMenuItemAll.forEach((item, index) => {
     item.addEventListener('click', () => {
         heroCounter = index;
         reloadHeroSlider(heroCounter);
-        heroSlider.scrollLeft = (heroCounter + 1) * heroSliderItemWidth;
+        // heroSlider.scrollLeft = (heroCounter + 1) * heroSliderItemWidth;
+        heroSlider.scrollLeft += heroSliderItemAll[heroCounter].getBoundingClientRect().left;
     })
 })
 //CLICK EVENTS ON BUTTON AND NAV
@@ -120,12 +121,12 @@ let autoPlayInterval = 2000;
 function autoPlayCommand() {
     if (heroCounter == totalHeroSlide)  {
         heroCounter = 0;
-        heroNavMenu.classList.toggle('disable-slider');
-        heroNavMenu.scrollLeft = 0;
-        heroNavMenu.classList.toggle('disable-slider');
+        // heroNavMenu.classList.toggle('disable-slider');
+        // heroNavMenu.scrollLeft = 0;
+        // heroNavMenu.classList.toggle('disable-slider');
         heroNavMenuItemAll[heroCounter].click();
-        heroSlider.scrollLeft += heroSliderItemWidth;
-    } else {
+        heroSlider.scrollLeft -= heroSliderItemAll[heroCounter].getBoundingClientRect().right;
+    } else if (heroCounter >= 0) {
         heroCounter += 1;
         heroNavMenuItemAll[heroCounter].click();
     }
