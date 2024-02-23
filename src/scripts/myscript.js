@@ -113,13 +113,9 @@ heroSlider.addEventListener('scroll', infiniteScroll);
 let playHeroSlider;
 let autoPlayInterval = 2000;
 
-function autoPlayCommand() {
-   nextSlide();
-}
-
 function startHeroSlider() {
     playHeroSlider = setInterval(() => {
-        autoPlayCommand();
+        nextSlide();
     }, autoPlayInterval);
 }
 
@@ -130,6 +126,4 @@ function stopHeroSlider() {
 }
 heroContainer.addEventListener('mouseenter', stopHeroSlider);
 heroContainer.addEventListener('mouseleave', startHeroSlider);
-
-
 //AUTO PLAY SECTION
