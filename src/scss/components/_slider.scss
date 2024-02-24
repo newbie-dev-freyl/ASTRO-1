@@ -17,10 +17,9 @@
         overflow-x: hidden;
         scroll-snap-type: x mandatory;
         scroll-behavior: smooth;
-
-        &.disable-slider {
-            scroll-behavior: auto;
-        }
+    }
+    &-slider.disable-slider {
+        scroll-behavior: auto;
     }
 
     &-slider > a {

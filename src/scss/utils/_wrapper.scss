@@ -1,6 +1,7 @@
 @use '../abstracts/' as *;
 .wrapper {
     // background: rosybrown;
+    position: relative;
     $max-width: map-get($breakpoints, wide);
     --padding: var(--size-9);
     --max-width: #{$max-width};
