@@ -10,10 +10,7 @@
         background: none;
         position: relative;
 
-        @include flex(0) {
-            align-items: center;
-            justify-content: space-between;
-        }
+        @include flex(0);
 
         padding-block: calc(var(--size-4) - 1px);
         

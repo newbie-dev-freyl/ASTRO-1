@@ -1,8 +1,7 @@
 @use '../abstracts/' as *;
 @use 'image-box' as *;
 .logo {
-    // background: rosybrown;s
-    @include square(45px, 45px);
+    @include square(45px);
     @extend .img-box;
     // padding: var(--size-1);
 }

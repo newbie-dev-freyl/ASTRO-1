@@ -10,11 +10,35 @@
 @mixin flex($gap: 0) {
     display: flex;
     gap: $gap;
-    @content;
 }
 
-@mixin square($w,$h){
-    width: $w;
-    height: $h;
+@mixin flex-center($gap: 0) {
+    align-items: center;
+    justify-content: center;
+    gap: $gap;
 }
 
+@mixin grid-auto-columns($fr: 100%) {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: $fr;
+}
+
+@mixin grid-center() {
+    display: grid;
+    place-content: center;
+}
+
+@mixin square($size){
+    width: $size;
+    height: $size;
+}
+
+@mixin round(){
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+}
+
+@mixin round-0(){
+    border-radius: 0;
+}

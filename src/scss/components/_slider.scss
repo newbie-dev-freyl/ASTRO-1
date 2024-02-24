@@ -35,16 +35,16 @@
         object-position: center;
     }
 
-    &-button  { 
+    &-button { 
         color: white;
         background: rgba(white, .3);
         backdrop-filter: blur(20px);
         @extend .grid-center;
         transition: background 1s ease;
-        
-        &:hover {
-            background: rgba(white, .5);
-        }
+    }
+
+    &-button:hover {
+        background: rgba(white, .5);
     }
 
     &-nav {
@@ -58,10 +58,10 @@
     &-navmenu {
        @extend .hero-slider ;
        grid-auto-columns: calc(100% / var(--hero-nav-item-per-view));
+    }
 
-       &.disable-slider  {
-            scroll-behavior: auto;
-        }
+    &-navmenu.disable-slider  {
+        scroll-behavior: auto;
     }
 
     &-navmenu > a { 
@@ -76,16 +76,18 @@
         padding: var(--size-3);
         scroll-snap-align: start;
         transition: background 1s ease;
-        &:not(:last-of-type) {
-            border-right: 2px solid transparent;
-        }
+        
+    }
 
-        &.active,
-        &:hover {
-            color: black;
-            background: rgba(white, .4);
-        }
-    }   
+    &-navmenu > a:not(:last-of-type) {
+        border-right: 2px solid transparent;
+    }
+
+    &-navmenu > a.active,
+    &-navmenu > a:hover {
+        color: black;
+        background: rgba(white, .4);
+    }
 }
 
 

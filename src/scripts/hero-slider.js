@@ -111,7 +111,7 @@ heroSlider.addEventListener('scroll', infiniteScroll);
 
 //AUTO PLAY SECTION
 let playHeroSlider;
-let autoPlayInterval = 2000;
+let autoPlayInterval = 5000;
 
 function startHeroSlider() {
     playHeroSlider = setInterval(() => {

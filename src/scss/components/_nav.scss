@@ -11,6 +11,7 @@
     height: 100vh;
     transform: translateX(calc(var(--size-9) * -1 / 2));
     z-index: -1;
+    display: none;
     
 
     @include breakpoint(tablet) {
@@ -30,10 +31,7 @@
         @extend .wrapper;
         
         @include breakpoint(tablet) {
-            @include flex(var(--size-4)) {
-                align-items: center;
-                justify-content: column;
-            }
+            @include flex-center(var(--size-4));
             padding-block: 0;
             width: auto;
         }
