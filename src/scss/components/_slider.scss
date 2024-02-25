@@ -11,9 +11,7 @@
     }
 
     &-slider {
-        display: grid;
-        grid-auto-flow: column;
-        grid-auto-columns: calc(100%);
+        @include grid-auto-columns();
         overflow-x: hidden;
         scroll-snap-type: x mandatory;
         scroll-behavior: smooth;
@@ -38,6 +36,7 @@
         color: white;
         background: rgba(white, .3);
         backdrop-filter: blur(20px);
+        text-decoration: none;
         @extend .grid-center;
         transition: background 1s ease;
     }
@@ -49,14 +48,14 @@
     &-nav {
         position: absolute;
         bottom: 0;
-        @extend .hero-slider    ;
+        @include grid-auto-columns();
         grid-auto-columns: 7% 86% 7%;
         width: 100%;
     }
 
     &-navmenu {
-       @extend .hero-slider ;
-       grid-auto-columns: calc(100% / var(--hero-nav-item-per-view));
+        @include grid-auto-columns();
+        grid-auto-columns: calc(100% / var(--hero-nav-item-per-view));
     }
 
     &-navmenu.disable-slider  {
@@ -71,6 +70,7 @@
         white-space: nowrap;
         overflow-x: hidden;
         text-overflow: ellipsis;
+        text-decoration: none;
 
         padding: var(--size-3);
         scroll-snap-align: start;
