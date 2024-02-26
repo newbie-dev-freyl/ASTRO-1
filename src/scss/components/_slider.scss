@@ -21,23 +21,20 @@
     }
 
     &-slider > a {
-        text-decoration: none;
         scroll-snap-align: start;
     }
 
     &-slider > a > img {
-        height: 70vh;
         width: 100%;
         object-fit: cover;
         object-position: center;
     }
 
     &-button { 
-        color: white;
-        background: rgba(white, .3);
+        color: white !important;
         backdrop-filter: blur(20px);
-        text-decoration: none;
         @extend .grid-center;
+        text-decoration: none;
         transition: background 1s ease;
     }
 
@@ -46,16 +43,29 @@
     }
 
     &-nav {
+        background: rgba(black, .1);
+        backdrop-filter: blur(20px);
+
         position: absolute;
-        bottom: 0;
+        top: 100%;
         @include grid-auto-columns();
-        grid-auto-columns: 7% 86% 7%;
+        grid-auto-columns: 12% 76% 12%;
         width: 100%;
+
+        @include breakpoint(tablet) {
+            grid-auto-columns: 7% 86% 7%;
+        }
     }
 
     &-navmenu {
-        @include grid-auto-columns();
-        grid-auto-columns: calc(100% / var(--hero-nav-item-per-view));
+        @include flex-center(var(--size-2));
+        padding-block: var(--size-4);
+
+        @include breakpoint(tablet) {
+            @include grid-auto-columns(1fr);
+            padding-block: 0;
+            gap: 0;
+        }
     }
 
     &-navmenu.disable-slider  {
@@ -65,17 +75,28 @@
     &-navmenu > a { 
         background: rgba(gray, .2);
         backdrop-filter: blur(20px);
-        color: gray ;
+        color: transparent;
 
         white-space: nowrap;
-        overflow-x: hidden;
+        overflow: hidden;
         text-overflow: ellipsis;
         text-decoration: none;
 
-        padding: var(--size-3);
         scroll-snap-align: start;
-        transition: background 1s ease;
-        
+        transition: background 1s ease, width 300ms ease;
+
+        padding: 0;
+        @include square(10px);
+        @include round();
+        @include shadow-bottom();
+
+        @include breakpoint(tablet) {
+            color: gray ;
+            padding: var(--size-3);
+            @include square(auto);
+            @include round-0();
+            box-shadow: none;
+        }
     }
 
     &-navmenu > a:not(:last-of-type) {
@@ -84,8 +105,22 @@
 
     &-navmenu > a.active,
     &-navmenu > a:hover {
-        color: black;
         background: rgba(white, .4);
+
+        @include breakpoint(tablet) {
+            color: black;
+        }
+    }
+
+    &-navmenu > a.active {
+        width: 20px;
+        border-radius: 10px;
+        overflow: visible;
+        
+        @include breakpoint(tablet) {
+            width: auto;
+            border-radius: 0;
+        }
     }
 }
 

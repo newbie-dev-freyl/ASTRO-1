@@ -1,16 +1,16 @@
 @use '../abstracts/' as *;
 
 .shadow {
-    &.bottom {
-        &.sm {
+    &-bottom {
+        &-sm {
             box-shadow: 0 2px 5px rgba(black, .3);
         }
     
-        &.default {
+        &-default {
             box-shadow: 0 6px 5px rgba(black, .3);
         }
     
-        &.large {
+        &-large {
             box-shadow: 0 9px 5px rgba(black, .3);
         }
     }

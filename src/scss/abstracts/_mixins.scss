@@ -3,7 +3,7 @@
 @mixin breakpoint($key) {
     $screen-size: map-get($breakpoints, $key);
     @media screen and (min-width: $screen-size) {
-       @content;
+        @content;
     }
 }
 
@@ -37,9 +37,13 @@
 
 @mixin round(){
     border-radius: 50%;
-    aspect-ratio: 1 / 1;
 }
 
 @mixin round-0(){
     border-radius: 0;
 }
+
+@mixin shadow-bottom($dept: 2px) {
+    box-shadow: 0 $dept 5px rgba(black, .3);
+}
+

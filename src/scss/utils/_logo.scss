@@ -2,6 +2,7 @@
 @use 'image-box' as *;
 .logo {
     @include square(45px);
-    @extend .img-box;
+    @include grid-center();
+    object-fit: cover;
     // padding: var(--size-1);
 }
