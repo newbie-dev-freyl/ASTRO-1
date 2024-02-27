@@ -11,7 +11,6 @@
     height: 100vh;
     transform: translateX(calc(var(--size-9) * -1 / 2));
     z-index: -1;
-    display: none;
     
 
     @include breakpoint(tablet) {
@@ -43,7 +42,7 @@
 
     &-link {
         // background: rosybrown;
-        @include flex(0);
+        @include flex();
         text-decoration: none;
         white-space: nowrap;
 

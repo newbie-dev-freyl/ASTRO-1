@@ -10,8 +10,8 @@
         background: none;
         position: relative;
 
-        @include flex(0);
-
+        @include flex-center-y();
+        justify-content: space-between;
         padding-block: calc(var(--size-4) - 1px);
         
         @include breakpoint(tablet) {
@@ -35,8 +35,8 @@
             pointer-events: none;
 
             &> *:last-child {
-            opacity: 0;
-           }
+                opacity: 0;
+            }
         }
     }
 }
