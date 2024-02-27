@@ -56,6 +56,10 @@ a[class] {
     color: currentColor;
 }
 
+i {
+    user-select: none;
+}
+
 h1, h2, h3, h4 {
     line-height: .9;
 

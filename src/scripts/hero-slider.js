@@ -118,12 +118,13 @@ function startHeroSlider() {
         nextSlide();
     }, autoPlayInterval);
 }
-
 startHeroSlider();
 
 function stopHeroSlider() {
     clearInterval(playHeroSlider);
 }
-heroContainer.addEventListener('mouseenter', stopHeroSlider);
-heroContainer.addEventListener('mouseleave', startHeroSlider);
+heroSlider.addEventListener('mouseover', stopHeroSlider);
+heroSlider.addEventListener('mouseleave', startHeroSlider);
+heroNav.addEventListener('mouseover', stopHeroSlider);
+heroNav.addEventListener('mouseleave', startHeroSlider);
 //AUTO PLAY SECTION
