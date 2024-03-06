@@ -1,8 +1,28 @@
 @use '../abstracts/' as *;
 
-.header {
-   
+.header {   
+    background: pink;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+
     &-inner {
       
+    }
+
+    &-nav {
+        position: absolute;
+        top: 100%;
+        @include breakpoint(tablet) {
+            position: relative;
+        }
+    }
+
+    &-navmenu {
+        flex-direction: column;
+        @include breakpoint(tablet) {
+            @include flex-center(var(--size-4));
+            flex-direction: row;
+        }
     }
 }

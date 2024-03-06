@@ -35,6 +35,10 @@
     text-transform: uppercase;
 }
 
+.text-nowrap {
+    white-space: nowrap;
+}
+
 .heading-1 {
     @extend h1;
 }
