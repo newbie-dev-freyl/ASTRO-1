@@ -1,43 +1,8 @@
 @use '../abstracts/' as *;
 
 .header {
-    background: hsla(0, 0%, 87%, 0.934);
-    position: sticky;
-    top: 0;
-    z-index: 999;
-    
+   
     &-inner {
-        background: none;
-        position: relative;
-
-        @include flex-center-y();
-        justify-content: space-between;
-        padding-block: calc(var(--size-4) - 1px);
-        
-        @include breakpoint(tablet) {
-            padding-block: 0;
-        }
-    }
-
-    &-inner__toggle {
-        cursor: pointer;
-        pointer-events: auto;
-        user-select: none;
-
-        &> *:first-child {
-            opacity: 0;
-        }
-
-        &> *:last-child {
-            opacity: 1;
-        }
-
-        @include breakpoint(tablet) {
-            pointer-events: none;
-
-            &> *:last-child {
-                opacity: 0;
-            }
-        }
+      
     }
 }

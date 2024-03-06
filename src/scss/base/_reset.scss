@@ -48,6 +48,12 @@ ol[role=list] {
     list-style: none;
 }
 
+nav {
+    a {
+        text-decoration: none;
+    }
+}
+
 a {
     text-decoration-skip-ink: auto;
 }

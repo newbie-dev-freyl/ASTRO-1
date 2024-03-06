@@ -2,57 +2,5 @@
 @use '../utils/' as *;
 
 .nav {
-    background-color: rgba(255, 255, 255, 0.868); 
-    backdrop-filter: blur(12px);
-
-    position: absolute;
-    top: 100%;
-    width: calc(100% + var(--size-9));
-    height: 100vh;
-    transform: translateX(calc(var(--size-9) * -1 / 2));
-    z-index: -1;
-    
-
-    @include breakpoint(tablet) {
-        background: none;
-
-        position: relative;
-        top: 0;
-        width: auto;
-        height: auto;
-        transform: translateX(0);
-        z-index: 1;
-    }
-
-    &-menu {
-        flex-direction: row;
-        padding-block: var(--size-5);
-        @extend .wrapper;
-        
-        @include breakpoint(tablet) {
-            @include flex-center(var(--size-4));
-            padding-block: 0;
-            width: auto;
-        }
-    }
-
-    &-list {
-        
-    }
-
-    &-link {
-        // background: rosybrown;
-        @include flex();
-        text-decoration: none;
-        white-space: nowrap;
-        padding-block: var(--size-2);
-        
-        @include breakpoint(tablet) {
-            padding-block: var(--size-5);
-        }
-
-        &:hover {
-            color: firebrick;
-        }
-    }
+   
 }

@@ -14,28 +14,30 @@ import '../scss/mystyle.scss';
 	<body>
 		<header class="header">
 			<div class="shadow-bottom-sm">
-				<div class="wrapper" data-variant="">
-					<div class="header-inner">	
-						<div class="logo round">
-							<img src="/assets/images/logo-1.png" draggable="false" alt="">
+				<div class="wrapper flex align-center space-between padding-block-sm">
+					<div class="header-inner | flex align-center space-between width-100">
+						<div class="header-brand">
+							<img src="/assets/images/logo-1.png" alt="" class="logo">
 						</div>
-						<div class="header-inner__toggle">
+						<div class="header-toggle">
 							<i class="bx bx-x"></i>
 							<i class="bx bx-menu"></i>
 						</div>
-						<nav class="nav">
-							<ul class="nav-menu | ff-nav" role="list">
-								<li class="nav-list"><a href="#" class="nav-link">Home</a></li>
-								<li class="nav-list"><a href="#" class="nav-link">About me</a></li>
-								<li class="nav-list"><a href="#" class="nav-link">Portfolio</a></li>
-								<li class="nav-list"><a href="#" class="nav-link">Services</a></li>
-								<li class="nav-list"><a href="#" class="nav-link">Contact</a></li>
-							</ul>
-						</nav>
-					</div><!-- header-inner -->
-				</div><!-- wrapper -->
-			</div><!-- shadow -->
+					</div>
+					<nav class="header-nav | ff-nav text-capitalize">
+						<ul class="header-navmenu" role="list">
+							<li class="header-navitem"><a href="#" class="header-navlink">home</a></li>
+							<li class="header-navitem"><a href="#" class="header-navlink">about us</a></li>
+							<li class="header-navitem"><a href="#" class="header-navlink">programs</a></li>
+							<li class="header-navitem"><a href="#" class="header-navlink">resources</a></li>
+							<li class="header-navitem"><a href="#" class="header-navlink">opportunities</a></li>
+							<li class="header-navitem"><a href="#" class="header-navlink">contact us</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
 		</header>
+		
 		<main>
 			<div class="wrapper" data-variant="full-bleed">
 				<div class="hero-containerx">
@@ -82,41 +84,7 @@ import '../scss/mystyle.scss';
 				</div><!-- carousel-container -->
 			</div><!-- wrapper -->	
 		</main>
-			<!-- <section class="section | margin-top-large">
-				<div class="wrapper">
-					<div class="flex justify-start gap-6">
-						<h1 class="heading-1">HELLO WORLD</h1>
-						<h2 class="heading-2">Hello World</h2>
-						<h3 class="heading-3">hello world</h3>
-						<h4 class="heading-4">ekubas kibas</h4>	
-					</div>
-	
-					<article>
-						<div class="even-columns gap-4">
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore laboriosam libero quod nesciunt eos dolorem esse, iusto eum unde modi ut sit sed fugit, repellendus quibusdam in velit blanditiis ad repudiandae, sint accusamus laborum magnam dolorum. Tempora consequatur minima accusamus adipisci, optio excepturi!</p>
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore laboriosam libero quod nesciunt eos dolorem esse, iusto eum unde modi ut sit sed fugit, repellendus quibusdam in velit blanditiis ad repudiandae, sint accusamus laborum magnam dolorum. Tempora consequatur minima accusamus adipisci, optio excepturi!</p>
-						</div>
-					</article>
-				</div>
-			</section>
-	
-			<section class="section | padding-top-large	">
-				<div class="wrapper" data-variant="">
-					<div class="flow">
-						<h1 class="heading-1">HELLO WORLD</h1>
-						<h2 class="heading-2">Hello World</h2>
-						<h3 class="heading-3">hello world</h3>
-						<h4 class="heading-4">ekubas kibas</h4>	
-					</div>
-	
-					<article>
-						<div class="even-columns">
-							<p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore laboriosam libero quod nesciunt eos dolorem esse, iusto eum unde modi ut sit sed fugit, repellendus quibusdam in velit blanditiis ad repudiandae, sint accusamus laborum magnam dolorum. Tempora consequatur minima accusamus adipisci, optio excepturi!</p>
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore laboriosam libero quod nesciunt eos dolorem esse, iusto eum unde modi ut sit sed fugit, repellendus quibusdam in velit blanditiis ad repudiandae, sint accusamus laborum magnam dolorum. Tempora consequatur minima accusamus adipisci, optio excepturi!</p>
-						</div>
-					</article>
-				</div>
-			</section>		 -->
+			
 	</body>
 	<script src="../src/scripts/hero-slider.js" defer></script>
 </html>
