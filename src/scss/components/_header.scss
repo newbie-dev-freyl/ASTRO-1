@@ -19,10 +19,6 @@
     }
 
     &-navmenu {
-        flex-direction: column;
-        @include breakpoint(tablet) {
-            @include flex-center(var(--size-4));
-            flex-direction: row;
-        }
+        
     }
 }
