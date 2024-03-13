@@ -19,8 +19,9 @@
     }
 
     &-navmenu {
+        
         @include breakpoint(tablet) {
-            @include flex-center(var(--size-4));
+            @include flex-center(var(--size-2));
         }
 
         // GLOBAL NAV LINK
@@ -35,14 +36,11 @@
             @include breakpoint(tablet) {
                 gap: var(--size-1);
                 padding-block: var(--size-4);
-                padding-inline: var(--size-1);
             }
         }
 
-        // FIRST NAV ITEM
-        > li,
-        // SECONd NAV ITEM 
-        > li li {
+        // GLOBAL NAV ITEM
+        li {
             
             @include breakpoint(tablet) {
                 position: relative;
@@ -61,12 +59,10 @@
         > li > a + ul {
             background: rosybrown;
             top: 0;
-            left: 100%;
-            transform: translateX(-10%);
+            transform: translateX(10%);
             
             @include breakpoint(tablet) {
                 top: 100%;
-                left: 0;
                 transform: translateY(10%);
             }
         }
@@ -81,11 +77,11 @@
         > li *> a + ul {
             background: royalblue;
             top: 0;
-            left: 100%;
-            transform: translateX(-10%);
+            transform: translateX(10%);
 
             @include breakpoint(tablet) {
-                transform: translateY(10%);
+                transform: translateX(10%);
+                right: 100%;
             }
         }
 
