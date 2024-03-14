@@ -3,7 +3,7 @@
     // background: rosybrown;
     position: relative;
     $max-width: map-get($breakpoints, wide);
-    --padding: var(--size-9);
+    --padding: var(--wrapper-padding);
     --max-width: #{$max-width};
 
     width: min(100% - var(--padding), var(--max-width));

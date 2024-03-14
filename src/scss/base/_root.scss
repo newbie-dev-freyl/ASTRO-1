@@ -1,6 +1,6 @@
 @use '../abstracts/' as *;
 :root {
-    
+    --wrapper-padding: var(--size-9);
     @each $prop, $data in $font-props {
         @if $prop == "family" {
             @each $family, $value in $data {

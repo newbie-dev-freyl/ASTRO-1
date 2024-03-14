@@ -7,21 +7,40 @@
     z-index: 999;
 
     &-inner {
-      
+        // UTILITY CLASSED
+    }
+
+    &-toggle {
+        padding-block: var(--size-5);
+        @include show-element();
+
+        @include breakpoint(tablet) {
+            @include hide-element();
+            padding-block: var(--size-4);
+        }
     }
 
     &-nav {
+        background: goldenrod;
         position: absolute;
         top: 100%;
+        height: 100vh;
+        width: calc(100% + var(--wrapper-padding));
+        left: calc(var(--wrapper-padding) * -1 / 2);
+        z-index: -1;
         @include breakpoint(tablet) {
             position: relative;
+            height: auto;
+            width: auto;
+            left: auto;
+            z-index: 1;
         }
     }
 
     &-navmenu {
         
         @include breakpoint(tablet) {
-            @include flex-center(var(--size-2));
+            @include flex-center(var(--size-1));
         }
 
         // GLOBAL NAV LINK
@@ -53,6 +72,14 @@
             opacity: 0;
             pointer-events: none;
             transition: transform 300ms ease;
+            min-width: 100%;
+            height: 100vh;
+            z-index: 1;
+
+            @include breakpoint(tablet) {
+                min-width: var(--size-15);
+                height: auto;
+            }
         }
 
         // FIRST SUBMENU

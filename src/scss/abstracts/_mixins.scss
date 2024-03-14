@@ -53,3 +53,12 @@
     box-shadow: 0 $dept 5px rgba(black, .3);
 }
 
+@mixin hide-element() {
+    opacity: 0;
+    pointer-events: none;
+}
+
+@mixin show-element() {
+    opacity: 1;
+    pointer-events: auto;
+}
