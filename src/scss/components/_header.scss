@@ -49,12 +49,19 @@
             justify-content: space-between;
         }
 
+        a[toggle-back] {
+            @include flex-center-y();
+            @include breakpoint(tablet) {
+                display: none;
+            }
+        }
         // FIRST NAV LINK
         > li > a {
 
             @include breakpoint(tablet) {
                 gap: var(--size-1);
                 padding-block: var(--size-4);
+                padding-inline: var(--size-1);
             }
         }
 
@@ -64,6 +71,10 @@
             @include breakpoint(tablet) {
                 position: relative;
             }
+        }
+
+        li:hover {
+            background: lightgreen;
         }
         
         // GLOBAL NAV MENU & SUBMENU
