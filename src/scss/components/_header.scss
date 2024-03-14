@@ -69,12 +69,11 @@
         // GLOBAL NAV MENU & SUBMENU
         ul {    
             position: absolute;
-            opacity: 0;
-            pointer-events: none;
-            transition: transform 300ms ease;
             min-width: 100%;
             height: 100vh;
             z-index: 1;
+            @include hide-element();
+            transition: transform 300ms ease;
 
             @include breakpoint(tablet) {
                 min-width: var(--size-15);
@@ -95,8 +94,7 @@
         }
 
         li:hover > a + ul {
-            opacity: 1;
-            pointer-events: auto;
+            @include show-element();
             transform: translate(0);
         }
 
