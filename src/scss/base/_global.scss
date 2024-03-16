@@ -1,4 +1,9 @@
 @use '../abstracts/' as *;
+
+html[disabled-animation] * {
+    transition: none;
+}
+
 body {
     background: #3a3a3a;
     font-family: var(--ff-primary);
