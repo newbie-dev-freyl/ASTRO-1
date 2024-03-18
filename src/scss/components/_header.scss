@@ -99,7 +99,12 @@
         }
 
         a[toggle-back] {
-            
+            color: currentColor;
+            font-size: var(--fs-400);
+            font-weight: var(--fw-600);
+            text-transform: uppercase;
+            padding-block: var(--size-1);
+            margin-bottom: var(--size-1);
             @include breakpoint(tablet) {
                 display: none;
             }
