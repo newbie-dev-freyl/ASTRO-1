@@ -86,26 +86,26 @@
     }
 
     &-navmenu {
-        
+        padding-block: var(--size-4);
         @include breakpoint(tablet) {
             @include flex-center(var(--size-1));
+            padding-block: 0;
         }
 
-        // GLOBAL NAV LINK
+        // GLOBAL NAV LINK & SUBMENU
         a {
-            @include flex-center();
+            @include flex-center-y();
             justify-content: space-between;
         }
 
         a[toggle-back] {
-            @include flex-center-y();
+            
             @include breakpoint(tablet) {
                 display: none;
             }
         }
 
-        > li a[toggle-menu] > i,
-        > li *> a[toggle-menu] > i {
+        a[toggle-menu] > i {
             transform: rotate(-90deg);
 
             @include breakpoint(tablet) {
@@ -113,13 +113,17 @@
             }
         }
 
+        
+
         // FIRST NAV LINK
         > li > a {
+            padding-inline: var(--size-1);
+            margin-inline: var(--size-4);
 
             @include breakpoint(tablet) {
                 gap: var(--size-1);
                 padding-block: var(--size-4);
-                padding-inline: var(--size-1);
+                margin-inline: 0;
             }
         }
 
@@ -131,9 +135,24 @@
             }
         }
 
-        li:hover {
+        li:hover > a {
             background: lightgreen;
         }
+
+        li:hover > a + ul {
+            //hover will take effect only on desktop mode
+            @include breakpoint(tablet) {
+                @include show-element();
+                transform: translate(0);
+            }
+        }
+
+        li *> a {
+            padding-inline: var(--size-1);
+            margin-inline: var(--size-4);
+        }
+
+        
         
         // GLOBAL NAV MENU & SUBMENU
         ul {
@@ -141,6 +160,7 @@
             position: absolute;
             min-width: 100%;
             height: 100vh;
+            padding-block: var(--size-4);
 
             z-index: 1;
             @include hide-element();
@@ -150,21 +170,13 @@
             @include breakpoint(tablet) {
                 min-width: var(--size-15);
                 height: auto;
+                @include shadow-bottom(5px);
             }
         }
 
         a[toggle-menu] + ul[toggled] {      
             @include show-element();
             transform: translate(0);
-        }
-
-        > li:hover > a + ul,
-        > li *:hover > a + ul {
-            //hover will take effect only on desktop mode
-            @include breakpoint(tablet) {
-                @include show-element();
-                transform: translate(0);
-            }
         }
 
         // FIRST SUBMENU
@@ -186,6 +198,7 @@
             @include breakpoint(tablet) {
                 transform: translateY(10%);
                 right: 100%;
+                top: calc(100% - (2 * var(--size-5)));
             }
         }
 
